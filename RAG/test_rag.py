@@ -12,7 +12,7 @@ sys.path.append(".")
 from RAG.Chain import *
 from RAG.Retriever import *
 from RAG.file_embedding import *
-from models.models import Model_loader
+from models.models import Gemini_loader
 
 def create_message(question, image_url):
     image_url = "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/252f2db6-d426-4931-80a0-8b7f8f875536/calm-slides-K7mr3W.png"
@@ -31,7 +31,7 @@ def create_message(question, image_url):
 
 
 if __name__ == "__main__":
-    CONFIG_MODEL = Model_loader()
+    CONFIG_MODEL = Gemini_loader()
     llm_vision = CONFIG_MODEL.load_gemini()
     llm_text = CONFIG_MODEL.load_gemini_text()
     sentence_transformer = CONFIG_MODEL.load_flan_t5()

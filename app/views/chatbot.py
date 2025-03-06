@@ -18,11 +18,11 @@ def setup_sidebar():
 
 setup_sidebar()
 
-from chatbot_core.rag_base import RAG
+from chatbot_core.rag_base import RAG, LLM_agent
 
 # init model
 if "model" not in st.session_state:
-    st.session_state.model = RAG(user_infor="Manh", session_id="1234")
+    st.session_state.model = LLM_agent(user_infor="Manh", session_id="1234")
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "Chào anh/chị ạ. Em có thể giúp gì cho anh/chị không ạ?"}]

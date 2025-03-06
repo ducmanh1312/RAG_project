@@ -3,8 +3,9 @@ warnings.filterwarnings("ignore")
 from langchain_community.utilities import SQLDatabase
 import  sys
 sys.path.append(".")
-from models.models import Model_loader
+from models.models import Gemini_loader
 from langchain.prompts import ChatPromptTemplate
+from langchain.tools import tool
 
 
 # Kết nối đến database SQLite
@@ -38,7 +39,7 @@ answer_prompt = ChatPromptTemplate.from_template(
     Phản hồi:
     """
 )
-llm_model = Model_loader.load_gemini(1)
+llm_model = Gemini_loader.load_gemini(1)
 
 def generate_sql(question: str) -> str:
     """Tạo truy vấn SQL từ câu hỏi bằng cách sử dụng mô hình LLM."""
@@ -59,13 +60,34 @@ def execute_sql(query: str):
     except Exception as e:
         return str(e)
 
-
 def generate_answer(query: str, results: str):
     """Tạo câu trả lời từ kết quả truy vấn SQL."""
     prompt = answer_prompt.format(query=query, results=results)
     response = llm_model.invoke(prompt)
     return response.content
 
+
+@tool
+def text_to_sql(question: str) -> str:
+    """
+    Chuyển đổi câu hỏi bằng ngôn ngữ tự nhiên thành truy vấn SQL và thực thi nó.
+
+    Args:
+        question (str): Câu hỏi của người dùng bằng ngôn ngữ tự nhiên.
+
+    Returns:
+        str: Kết quả của truy vấn SQL sau khi thực thi.
+    
+    Example:
+        >>> text_to_sql("Liệt kê tất cả các phân bón")
+        sql_query = SELECT "name" FROM fertilizer
+        result = Phân bón NPK
+        bot_answer = "Trong kho còn phân bón NPK."
+    """
+    sql_query = generate_sql(question)
+    print(f"executing query: {sql_query}")
+    result = execute_sql(sql_query)
+    return result
 
 if __name__ == "__main__":
     query_question = "Còn bao nhiêu phân bón NPK trong kho?"

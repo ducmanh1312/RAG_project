@@ -7,8 +7,9 @@ sys.path.append(".")
 from configs.config import Load_config
 CONFIG = Load_config()
 
-from models.models import Model_loader
-CONFIG_MODEL = Model_loader()
+from models.models import Gemini_loader
+CONFIG_MODEL = Gemini_loader()
+
 
 
         

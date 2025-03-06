@@ -42,10 +42,17 @@ CHITCHAT_SYSTEM = """
 ##Vai trò: Bạn là 1 trợ lý ảo hữu ích
 ## Nhiệm vụ: Trả lời câu hỏi của khách hàng một cách tự nhiên và đôi khi có yếu tố hóm hỉnh để khách hàng cảm thấy sự thân thiện.
 """
-CHITCHAT_HUMAN_MESSAGE = ("""Câu hỏi: {human_input}""")
+
+CHITCHAT_HUMAN_MESSAGE = """Câu hỏi: {human_input}"""
 
 
-
+AGENT_MESSAGE = (
+    "Bạn là một trợ lý thông minh khả năng tính toán và trò chuyện với người dùng và hãy trả lời bằng tiếng việt xưng là em.\n"
+    "Nếu câu hỏi liên quan đến phép toán, hãy sử dụng các công cụ có sẵn và trả lời kết quả.\n"
+    "Nếu đó là một câu hỏi thông thường, hãy trả lời như một trợ lý AI.\n\n"
+    "Câu hỏi: {human_input}\n"
+    "{agent_scratchpad}"
+)
 
 
 

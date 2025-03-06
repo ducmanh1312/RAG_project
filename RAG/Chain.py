@@ -7,7 +7,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 import os
 
-# Multi-modal chain
+# Multi-modal chain for gemini
 def create_full_chain(retriever, llm_text, llm_vision):
 
     template = """ ```{context} ```{query}Provide brief information and store location."""
@@ -24,7 +24,7 @@ def create_full_chain(retriever, llm_text, llm_vision):
     )
     return full_chain
 
-#  Compressor chain: Hybrid Retriever + reranking 
+#  Compressor chain: Hybrid Retriever + reranking, for google_flan_t5
 def create_compression_chain(llm, ensemble_retriever,cohere_api_key):
     compressor = CohereRerank(cohere_api_key=cohere_api_key)
 
