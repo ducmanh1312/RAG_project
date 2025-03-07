@@ -10,12 +10,20 @@ agent_prompt = PromptTemplate(
     template=(
         "Bạn là một trợ lý thông minh khả năng tính toán và trò chuyện với người dùng và hãy trả lời bằng tiếng việt xưng là em.\n"
         "Nếu câu hỏi liên quan đến phép toán, hãy sử dụng các công cụ có sẵn và trả lời kết quả.\n"
-        "Nêuế câu hỏi liên quan đến truy vấn cơ sở dữ liệu, hãy sử dụng tool text_to_sql"
+        "Nếu câu hỏi liên quan đến truy vấn cơ sở dữ liệu, hãy sử dụng tool text_to_sql"
         "Nếu đó là một câu hỏi thông thường, hãy trả lời như một trợ lý AI.\n\n"
+        "Nếu không chắc chắn về câu trả lời, hãy sử dụng công cụ search để tìm kiếm thông tin.\n\n"
         "Câu hỏi: {input}\n"
         "{agent_scratchpad}"
     )
-)# => string
+)# input, agent_scratchpad => string
+
+agent_chatprompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessage(AGENT_SYSTEM),
+        HumanMessagePromptTemplate.from_template(AGENT_MESSAGE),
+    ]
+)
 
 chitchat_chatprompt = ChatPromptTemplate.from_messages(     
 [

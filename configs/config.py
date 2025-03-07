@@ -32,7 +32,17 @@ class Load_config:
 
         # RAG config
         self.MEMORY_K = 50
-    
 
+        # GROQ config
+        self.GROQ_MODEL1 = config["groq"]["model1"]
+        self.GROQ_MODEL2 = config["groq"]["model2"]
+        self.GROQ_API_KEY = config["groq"]["api_key"]
+        self.GROQ_TEMPERATURE = config["groq"]["temperature"]
+        self.GROQ_MAX_TOKENS = config["groq"]["max_tokens"]
+
+        self.TAVILY_API_KEY = config["tavily"]["api_key"]
+        
+    
+CONFIG = Load_config()
 # if __name__ == "__main__":
    # print(CONFIG.__dict__)

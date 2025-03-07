@@ -18,9 +18,9 @@ sys.path.append(".")
 from configs.config import Load_config
 CONFIG = Load_config()
 
-from models.models import Gemini_loader, Model_flan_t5_loader
+from models.models import Gemini_loader, Flan_t5_loader
 CONFIG_MODEL = Gemini_loader()
-CONFIG_FLAN_MODEL = Model_flan_t5_loader()
+CONFIG_FLAN_MODEL = Flan_t5_loader()
 
 from app.tools.other_tools import *
 from app.prompt.prompt_template import *

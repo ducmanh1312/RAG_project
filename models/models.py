@@ -9,6 +9,8 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import torch
 from langchain_google_genai import ChatGoogleGenerativeAI
+from groq import Groq
+from langchain_groq import ChatGroq
 
 import sys
 sys.path.append(".")
@@ -29,7 +31,28 @@ class Gemini_loader:
    )
 
 
-class Model_flan_t5_loader:
+class Groq_loader:
+   def __init__(self):
+      self.model_1 = CONFIG.GROQ_MODEL1
+      self.model_2 = CONFIG.GROQ_MODEL2
+      self.api_key = CONFIG.GROQ_API_KEY
+      self.temperature = CONFIG.GROQ_TEMPERATURE
+      self.max_tokens = CONFIG.GROQ_MAX_TOKENS
+      self.client = ChatGroq(
+         model_name = self.model_1,
+         api_key = self.api_key)
+
+   def create_model(self):
+      return self.client
+      
+
+# def parse_groq_stream(stream):
+#    for chunk in stream:
+#       if chunk.choices[0].delta.content is not None:
+#          yield chunk.choices[0].delta.content
+
+
+class Flan_t5_loader:
    def __init__(self):
       model_name = CONFIG.FLAN_MODEL
       config = AutoConfig.from_pretrained(model_name)
@@ -63,17 +86,14 @@ class Model_flan_t5_loader:
 
 
 
+
 if __name__ == "__main__":
-   # print(CONFIG.__dict__)
-   llm_loader = Model_flan_t5_loader()  
+   llm_loader = Groq_loader()
    llm = llm_loader.create_model()
+
+   # Gọi model và in kết quả
    response = llm.invoke("What is the capital of France?")
    print(response)
-
-
-
-
-
 
 
 
