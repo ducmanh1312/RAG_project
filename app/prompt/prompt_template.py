@@ -1,5 +1,5 @@
 from .template import *
-from langchain.prompts import PromptTemplate, HumanMessagePromptTemplate, ChatPromptTemplate
+from langchain.prompts import PromptTemplate, HumanMessagePromptTemplate, ChatPromptTemplate, MessagesPlaceholder
 from langchain.schema import HumanMessage
 from langchain.schema.output_parser import StrOutputParser
 from langchain.schema import SystemMessage
@@ -20,8 +20,8 @@ agent_prompt = PromptTemplate(
 
 agent_chatprompt = ChatPromptTemplate.from_messages(
     [
-        SystemMessage(AGENT_SYSTEM),
-        HumanMessagePromptTemplate.from_template(AGENT_MESSAGE),
+        ("system", AGENT_SYSTEM),
+        MessagesPlaceholder(variable_name="messages"),
     ]
 )
 

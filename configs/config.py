@@ -41,6 +41,12 @@ class Load_config:
         self.GROQ_MAX_TOKENS = config["groq"]["max_tokens"]
 
         self.TAVILY_API_KEY = config["tavily"]["api_key"]
+
+        LANGSMITH_TRACING= True
+        LANGSMITH_ENDPOINT="https://api.smith.langchain.com"
+        LANGSMITH_API_KEY="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"
+        LANGSMITH_PROJECT="pr-worthwhile-light-4"
+        OPENAI_API_KEY="<your-openai-api-key>"
         
     
 CONFIG = Load_config()
